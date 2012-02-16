@@ -1,0 +1,14 @@
+wbctl-net
+-------------------------------
+
+This is a simple program to control watchboot[0].
+I confirmed the working in RPC-T8F and RPC-MSC.
+
+[0]: http://www.meikyo.co.jp/products/t8f.html
+
+usage:
+  - Power port 0 of 192.168.0.1 set to OFF.
+    wbctl-net -s 192.168.0.1 -p 0 -c off
+  - Power port 1 of 192.168.0.1 set to ON.
+    wbctl-net -s 192.168.0.1 -p 1 -c on
+
