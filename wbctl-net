@@ -12,7 +12,7 @@ SRV_CON_CHK='server ready.'
 PASSWD_PT_CHK='Password:'
 OK_CHK='OK'
 WBC_PT='WB1>'
-TOUT=10
+TOUT=2
 
 usage = "usage: wtc-net [options]"
 parser = OptionParser(usage)
@@ -30,11 +30,11 @@ parser.add_option("-p", "--port", type="int", dest="port", default=1,
 
 if options.server == None :
 	parser.print_help()
-	exit()
+	exit(0)
 
 if options.port < 1 or options.port > 8 :
 	parser.print_help()
-	exit()
+	exit(0)
 	
 if options.cmd == "on":
 	set_cmd = 'PON' + str(options.port) + '\r'
@@ -44,7 +44,7 @@ elif options.cmd == "reboot":
 	set_cmd = 'POR' + str(options.port) + '\r'
 else:
 	parser.print_help()
-	exit()
+	exit(0)
 
 print "connect " + options.server
 print set_cmd
@@ -59,5 +59,7 @@ try:
 	t.write(set_cmd) 		# set Power control
 	t.write('q\r') 			# exit
 
+        exit(0)
 except EOFError:
 	print 'connection closed'
+        exit(1)
